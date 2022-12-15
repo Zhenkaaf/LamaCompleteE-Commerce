@@ -5,8 +5,13 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import './navbar.scss';
+import Cart from '../Cart/Cart';
+import { useState } from 'react';
 
 const Navbar = () => {
+
+const [open, setOpen] = useState(false);
+
     return (
         <div className="navbar">
             <div className="wrapper">
@@ -52,13 +57,14 @@ const Navbar = () => {
                         <SearchIcon />
                         <PermIdentityIcon />
                         <FavoriteBorderIcon />
-                        <div className="cartIcon">
+                        <div className="cartIcon" onClick={() => setOpen(!open)}>
                             <AddShoppingCartIcon />
                             <span>0</span>
                         </div>
                     </div>
                 </div>
             </div>
+            {open && <Cart/>}
         </div>
     )
 }
