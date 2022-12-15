@@ -1,5 +1,5 @@
 import './cart.scss';
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const Cart = () => {
 
@@ -9,6 +9,7 @@ const Cart = () => {
             img: 'https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&w=600',
             img2: 'https://images.pexels.com/photos/1557843/pexels-photo-1557843.jpeg?auto=compress&cs=tinysrgb&w=600',
             title: 'long dress ho hoh oh',
+            desc: 'long dress ho hoh oh',
             isNew: true,
             oldPrice: 19,
             price: 12
@@ -18,6 +19,7 @@ const Cart = () => {
             img: 'https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&w=600',
             img2: 'https://images.pexels.com/photos/1557843/pexels-photo-1557843.jpeg?auto=compress&cs=tinysrgb&w=600',
             title: 'long dress ho hoh oh',
+            desc: 'long dress ho hoh oh',
             isNew: true,
             oldPrice: 19,
             price: 12
@@ -27,17 +29,24 @@ const Cart = () => {
 
     return (
         <div className="cart">
-<h1>Products in your cart</h1>
-{data?.map((item) => (
-    <div className="item" key={item.id}>
-        <img src={item.img} alt="" />
-        <div className="details">
-            <h1>{item.title}</h1>
-            <p>{item.desc.substring(0, 100)}</p>
-            <div className="price">1 x ${item.price}</div>
-        </div>
-    </div>
-))}
+            <h1>Products in your cart</h1>
+            {data?.map((item) => (
+                <div className="item" key={item.id}>
+                    <img src={item.img} alt="" />
+                    <div className="details">
+                        <h1>{item.title}</h1>
+                        <p>{item.desc?.substring(0, 100)}</p>
+                        <div className="price">1 x ${item.price}</div>
+                    </div>
+                    <DeleteForeverIcon className='delete' />
+                </div>
+            ))}
+            <div className="total">
+                <span>SUBTOTAL</span>
+                <span>$123</span>
+            </div>
+            <button>PROCEED TO CHECKOUT</button>
+            <span className='reset'>Reset Cart</span>
         </div>
     )
 }
