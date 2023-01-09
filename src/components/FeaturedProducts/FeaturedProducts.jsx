@@ -1,9 +1,11 @@
 import './featuredProducts.scss';
 import Card from './../Card/Card';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const FeaturedProducts = ({ type }) => {
 
-    const data = [
+/*     const data = [
         {
             id: 1,
             img: 'https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&w=600',
@@ -40,8 +42,29 @@ const FeaturedProducts = ({ type }) => {
             oldPrice: 19,
             price: 12
         }
-    ];
+    ]; */
 
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(process.env.REACT_APP_API_URL+"/products?populate=*", {
+                    headers: {
+                        Authorization: "bearer " + process.env.REACT_APP_API_TOKEN,
+                    }
+                });
+                console.log(data);
+                setData(res.data.data)
+            }
+            catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, []);
+
+    console.log(data);
+    
     return (
         <div className="featuredProducts">
             <div className="top">
