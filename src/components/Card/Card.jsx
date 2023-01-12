@@ -10,8 +10,8 @@ const Card = ({ item }) => {
             <div className="card">
                 <div className="image">
                     {item?.attributes.isNew && <span>New season</span>}
-                    <img src={process.env.REACT_APP_UPLOAD_URL+item.attributes.img.data.attributes.url} className='mainImg' alt="" />
-                    <img src={process.env.REACT_APP_UPLOAD_URL+item.attributes.img2.data.attributes.url} className='secondImg' alt="" />
+                    <img src={process.env.REACT_APP_UPLOAD_URL+item.attributes?.img?.data?.attributes?.url} className='mainImg' alt="" />
+                    <img src={process.env.REACT_APP_UPLOAD_URL+item.attributes?.img2?.data?.attributes?.url} className='secondImg' alt="" />
                 </div>
                 <h2>{item?.attributes.title}</h2>
                 <div className="prices">

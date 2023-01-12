@@ -2,6 +2,7 @@ import './featuredProducts.scss';
 import Card from './../Card/Card';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import useFetch from '../../hooks/useFetch';
 
 const FeaturedProducts = ({ type }) => {
 
@@ -44,11 +45,12 @@ const FeaturedProducts = ({ type }) => {
         }
     ]; */
 
-    const [data, setData] = useState([]);
+    /* const [data, setData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(process.env.REACT_APP_API_URL+"/products?populate=*", {
+                const res = await axios.get(
+                    process.env.REACT_APP_API_URL+ `/products?populate=*&[filters][type][$eq]=${type}`, {
                     headers: {
                         Authorization: "bearer " + process.env.REACT_APP_API_TOKEN,
                     }
@@ -63,8 +65,11 @@ const FeaturedProducts = ({ type }) => {
         fetchData();
     }, []);
 
-    console.log(data);
+    console.log(data); */
     
+const {data, loading, error} = useFetch(`/products?populate=*&[filters][type][$eq]=${type}`);
+
+
     return (
         <div className="featuredProducts">
             <div className="top">
@@ -72,9 +77,14 @@ const FeaturedProducts = ({ type }) => {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusantium aliquid hic qui quisquam, et minima iusto, eius totam alias nesciunt, repellendus ab maxime? Repellat molestiae ab commodi voluptatem necessitatibus.</p>
             </div>
             <div className="bottom">
-                {data.map(item =>(
+                {error 
+                ? "Something went wrong!" 
+                : 
+                (loading 
+                ? "loading" 
+                : data.map(item => (
                     <Card item={item} key={item.id} />
-                ))}
+                )))}
             </div>
         </div>
     )

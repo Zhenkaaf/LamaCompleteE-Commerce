@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import List from '../../components/List/List';
+import useFetch from '../../hooks/useFetch';
 import './products.scss';
 
 
@@ -13,6 +14,9 @@ const catId = parseInt(useParams().id);
 const [maxPrice, setMaxPrice] = useState(1000);
 const [sort, setSort] = useState(null);
 
+const {data, loading, error} = useFetch(`/sub-categories?[filters][categories][id][$eq]=${catId}`);
+console.log(data);
+
     return (
         <div className="products">
             <div className="left">
@@ -22,14 +26,14 @@ const [sort, setSort] = useState(null);
                         <input type="checkbox" id='1' value={1} />
                         <label htmlFor="1">Shoes</label>
                     </div>
-                    <div className="inputItem">
+                    {/* <div className="inputItem">
                         <input type="checkbox" id='2' value={2} />
                         <label htmlFor="2">Skirts</label>
                     </div>
                     <div className="inputItem">
                         <input type="checkbox" id='3' value={3} />
                         <label htmlFor="3">Coats</label>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="filterItem">
                     <h2>Filter by price</h2>

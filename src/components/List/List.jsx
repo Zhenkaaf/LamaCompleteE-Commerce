@@ -4,7 +4,7 @@ import './list.scss';
 
 const List = () => {
 
-    const data = [
+   /*  const data = [
         {
             id: 1,
             img: 'https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&w=600',
@@ -68,13 +68,13 @@ const List = () => {
             oldPrice: 19,
             price: 12
         },
-    ];
+    ]; */
 
     return (
         <div className="list">
-            {data?.map(item => (
+           {/*  {data?.map(item => (
                 <Card item={item} key={item.id} />
-            ))}
+            ))} */}
         </div>
     )
 }
